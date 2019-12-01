@@ -133,7 +133,7 @@ class PhoneBook:
 
         self.__exit_continue("Menu?")
 
-    def view_all_records(self):
+    def search(self):
         commands = ["1", "2", "3", "4", "5", "6", "7"]
         while True:
             request = input(
@@ -196,7 +196,7 @@ class PhoneBook:
             if user_input == '1':
                 self.add_record()
             elif user_input == '2':
-                self.view_all_records()
+                self.search()
             else:
                 self.menu_view()
 
@@ -204,6 +204,16 @@ class PhoneBook:
             print(i)
         self.__exit_continue("Return to the main menu?")
 
+    def view_all (self):
+        self.__cursor.execute("SELECT * FROM {} ".format(self.__db_name))
+        result = self.__cursor.fetchall()
+        if len(result) == 0:
+            print("Phone book is empty.")
+        else:
+            for elem in result:
+                print(elem)
+        self.__exit_continue()
+        
     def menu_view(self):
         while True:
             user_input = input("======================================================\n"
@@ -227,9 +237,9 @@ class PhoneBook:
         elif user_input == "3":
             pass
         elif user_input == "4":
-            pass
+            self.view_all()
         elif user_input == "5":
-            self.view_all_records()
+            self.search()
 
         elif user_input == "6":
             print("Exit process initiated")
