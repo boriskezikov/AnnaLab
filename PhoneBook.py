@@ -161,11 +161,18 @@ class PhoneBook:
                 print("Enter {0} ".format(self.command_line.get(request)))
                 if request == "4":
                     print("Format <yyyy-mm-dd>")
-                user_input = input().capitalize().strip()
+                while True:
+                    try:
+                        date_text = datetime.date(int(input("Birth date Year:")), int(input("Birth date Month:")),
+                                                  int(input("Birth date Day:")))
+                        datetime.datetime.strptime(str(date_text), '%Y-%m-%d')
+                        break
+                    except BaseException:
+                        print("Incorrect data format, should be YYYY-MM-DD")
                 self.cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" ".
                                     format(self.__db_name,
                                            self.command_line.get(request),
-                                           user_input.strip()))
+                                           str(date_text).strip()))
                 break
 
             elif request == '0':
@@ -213,8 +220,8 @@ class PhoneBook:
         while True:
             need_to_edit = input("Do you wand to edit any record? y/n")
             if need_to_edit.lower() == "y":
-                name = input("Enter name of editing record")
-                surname = input("Enter surname of editing record")
+                name = input("Enter name of editing record").capitalize().strip()
+                surname = input("Enter surname of editing record").capitalize().strip()
                 self.cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" AND {3} = \"{4}\"".format(self.__db_name,
                                                                                                      "name",
                                                                                                      name,
@@ -346,7 +353,7 @@ class PhoneBook:
             "\n6 - Edit Country"
             "\n7 - Edit Phone number"
             "\n8 - Edit all"
-            "\n0 - Step back")
+            "\n0 - Step  back")
 
         if request in commands:
 

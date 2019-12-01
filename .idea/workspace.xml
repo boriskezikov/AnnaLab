@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c34df93-9721-4b6f-8c0f-69eacec485ba" name="Default Changelist" comment="Get all released">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PhoneBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/PhoneBook.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basetest.db" beforeDir="false" afterPath="$PROJECT_DIR$/basetest.db" afterDir="false" />
     </list>
@@ -16,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PhoneBook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="155" column="42" lean-forward="true" selection-start-line="155" selection-start-column="42" selection-end-line="155" selection-end-column="42" />
+            <state relative-caret-position="164">
+              <caret line="224" column="35" selection-start-line="224" selection-end-line="225" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#354#608#0" />
@@ -26,12 +27,8 @@
                 <element signature="e#420#1098#0" />
                 <element signature="e#1721#1871#0" />
                 <element signature="e#1306#1433#0" />
-                <element signature="e#2056#5123#0" />
                 <element signature="e#7466#7663#0" />
-                <element signature="e#8268#8782#0" />
                 <element signature="e#9661#9913#0" />
-                <element signature="e#8655#10921#0" />
-                <element signature="e#12738#17423#0" />
               </folding>
             </state>
           </provider>
@@ -60,6 +57,8 @@
       <find>lower().ca</find>
       <find>command</find>
       <find>edit</find>
+      <find>unab</find>
+      <find>Unable to edit this record</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -207,8 +206,8 @@
       <window_info anchor="bottom" id="Event Log" sideWeight="0.5003524" side_tool="true" weight="0.2259887" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.049435027" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.3601695" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.21610169" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49964765" weight="0.31497175" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.23728813" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -234,28 +233,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/PhoneBook.py</url>
-          <line>388</line>
+          <line>395</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/PhoneBook.py</url>
-          <line>382</line>
+          <line>389</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/PhoneBook.py</url>
-          <line>192</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
-          <line>289</line>
+          <line>296</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/PhoneBook.py</url>
-          <line>273</line>
-          <option name="timeStamp" value="35" />
+          <line>229</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
+          <line>224</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -376,8 +375,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PhoneBook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="155" column="42" lean-forward="true" selection-start-line="155" selection-start-column="42" selection-end-line="155" selection-end-column="42" />
+        <state relative-caret-position="164">
+          <caret line="224" column="35" selection-start-line="224" selection-end-line="225" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#354#608#0" />
@@ -386,12 +385,8 @@
             <element signature="e#420#1098#0" />
             <element signature="e#1721#1871#0" />
             <element signature="e#1306#1433#0" />
-            <element signature="e#2056#5123#0" />
             <element signature="e#7466#7663#0" />
-            <element signature="e#8268#8782#0" />
             <element signature="e#9661#9913#0" />
-            <element signature="e#8655#10921#0" />
-            <element signature="e#12738#17423#0" />
           </folding>
         </state>
       </provider>
