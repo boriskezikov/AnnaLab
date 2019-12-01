@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c34df93-9721-4b6f-8c0f-69eacec485ba" name="Default Changelist" comment="Get all released">
-      <change beforePath="$PROJECT_DIR$/PhoneBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/PhoneBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/mydatabase.db" afterDir="false" />
-    </list>
+    <list default="true" id="5c34df93-9721-4b6f-8c0f-69eacec485ba" name="Default Changelist" comment="Get all released" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,18 +13,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PhoneBook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="212" column="43" lean-forward="true" selection-start-line="212" selection-start-column="43" selection-end-line="212" selection-end-column="43" />
+            <state relative-caret-position="96">
+              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#354#608#0" />
                 <element signature="e#204#361#0" />
                 <element signature="e#176#358#0" />
                 <element signature="e#420#1098#0" />
                 <element signature="e#1721#1871#0" />
                 <element signature="e#2056#5123#0" />
+                <element signature="e#5157#9690#0" />
+                <element signature="e#7466#7663#0" />
+                <element signature="e#8268#8782#0" />
                 <element signature="e#8339#8622#0" />
                 <element signature="e#8655#10921#0" />
                 <element signature="e#10964#12299#0" />
+                <element signature="e#12738#17423#0" />
               </folding>
             </state>
           </provider>
@@ -255,11 +257,6 @@
           <line>187</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
-          <line>193</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -333,18 +330,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PhoneBook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="212" column="43" lean-forward="true" selection-start-line="212" selection-start-column="43" selection-end-line="212" selection-end-column="43" />
+        <state relative-caret-position="96">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#354#608#0" />
             <element signature="e#204#361#0" />
             <element signature="e#176#358#0" />
             <element signature="e#420#1098#0" />
             <element signature="e#1721#1871#0" />
             <element signature="e#2056#5123#0" />
+            <element signature="e#5157#9690#0" />
+            <element signature="e#7466#7663#0" />
+            <element signature="e#8268#8782#0" />
             <element signature="e#8339#8622#0" />
             <element signature="e#8655#10921#0" />
             <element signature="e#10964#12299#0" />
+            <element signature="e#12738#17423#0" />
           </folding>
         </state>
       </provider>
