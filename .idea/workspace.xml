@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5c34df93-9721-4b6f-8c0f-69eacec485ba" name="Default Changelist" comment="Get all released">
       <change beforePath="$PROJECT_DIR$/PhoneBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/PhoneBook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/mydatabase.db" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,17 +16,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PhoneBook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
+            <state relative-caret-position="213">
+              <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#354#608#0" />
                 <element signature="e#204#361#0" />
                 <element signature="e#176#358#0" />
                 <element signature="e#420#1098#0" />
                 <element signature="e#1721#1871#0" />
-                <element signature="e#2056#5123#0" />
                 <element signature="e#5194#8294#0" />
-                <element signature="e#9605#11816#0" />
+                <element signature="e#8339#8622#0" />
+                <element signature="e#8655#10921#0" />
+                <element signature="e#10964#12299#0" />
               </folding>
             </state>
           </provider>
@@ -202,7 +205,7 @@
       <window_info anchor="bottom" id="Event Log" sideWeight="0.5003524" side_tool="true" weight="0.2259887" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.042372882" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.24011299" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.46468925" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -218,6 +221,17 @@
     <MESSAGE value="Get all released" />
     <MESSAGE value="Ge all fix" />
     <option name="LAST_COMMIT_MESSAGE" value="Ge all fix" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
+          <line>117</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
@@ -277,19 +291,28 @@
     <entry file="file://$PROJECT_DIR$/PhoneBook.db">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../../Caches/PyCharmCE2018.3/python_stubs/-1199943126/_sqlite3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="289" column="8" selection-start-line="289" selection-start-column="8" selection-end-line="289" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PhoneBook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
+        <state relative-caret-position="213">
+          <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#354#608#0" />
             <element signature="e#204#361#0" />
             <element signature="e#176#358#0" />
             <element signature="e#420#1098#0" />
             <element signature="e#1721#1871#0" />
-            <element signature="e#2056#5123#0" />
             <element signature="e#5194#8294#0" />
-            <element signature="e#9605#11816#0" />
+            <element signature="e#8339#8622#0" />
+            <element signature="e#8655#10921#0" />
+            <element signature="e#10964#12299#0" />
           </folding>
         </state>
       </provider>
