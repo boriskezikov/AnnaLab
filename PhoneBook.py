@@ -7,6 +7,7 @@ import datetime
 class YellowBook:
     __database = None
     __cursor = None
+    __conn = None
 
     def __validate_menu_input(self, user_input):
         if str(user_input).isnumeric():
@@ -35,8 +36,8 @@ class YellowBook:
 
     def __init__(self, db_file):
         self.__database = db_file
-        conn = sqlite3.connect("mydatabase.db")
-        self.cursor = conn.cursor()
+        self.__conn = sqlite3.connect("mydatabase.db")
+        self.__cursor = self.__conn.cursor()
 
     def initate_db(self):
         self.cursor.execute("""CREATE TABLE PhoneBook 
@@ -94,8 +95,30 @@ class YellowBook:
             country = input("Country name can't include another symbols besides letters and digits! : ")
         data.append(country.lower().capitalize())
 
+        self.__cursor.execute('SELECT EXISTS (SELECT [First name],[Last name]'
+                              ' FROM {0} '
+                              ' WHERE [First name] = "{1}" and [Last name] = "{2}")'.format(DATA, data[0], data[2]))
 
+        flag = self.__cursor.fetchone()  # fetchone returns a tuple with one element
 
+        if flag[0] != 1:
+
+            # UNIQUE ERROR HANDLING
+            try:
+                self.__cursor.execute("INSERT"
+                                    " INTO Yellowbook "
+                                    "VALUES (?,?,?,?,?,?,?,?)", data)
+
+            except sqlite3.IntegrityError as f:
+                foo.exit_continue("Return to menu?\n")
+
+        else:
+            print(
+                " \nThe Yellowbook does not support 2 or more records with similar [First name] and {Second name] fields."
+                " \nFill in another Surname.\n ")
+            foo.exit_continue("Menu?")
+
+        main.conn.commit()  # Saves changes in data base
 
     def menu_view(self):
         while True:
