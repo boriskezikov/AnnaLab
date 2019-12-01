@@ -8,7 +8,7 @@ class YellowBook:
     __cursor = None
     __conn = None
     __db_name = "PhoneBook"
-    __command_line = {'1': "name", '2': "[surname]",
+    __command_line = {'1': "name", '2': "surname",
                       '3': "Age", '4': "[Birth date]", '5': "City",
                       '6': "Country", '7': "Phone"}
 
@@ -133,42 +133,43 @@ class YellowBook:
         self.__conn.commit()  # Saves changes in data base
 
     def view_all_records(self):
-        commands = ["1", "2", "3", "4", "5", "6", "7", "8"]
+        commands = ["1", "2", "3", "4", "5", "6", "7"]
         while True:
-            user_input = input(
+            request = input(
                 "\nPlease choose the needed category and enter the value."
                 "\n________________________________ "
                 "\n1 - Search by First name"
-                "\n2 - Search by Middle name "
-                "\n3 - Search by Last name"
-                "\n4 - Search by Age"
-                "\n5 - Search by Birth date "
-                "\n6 - Search by City"
-                "\n7 - Search by Country"
-                "\n8 - Search by Phone number"
-                "\n9 - Print all contacts"
-                "\n10 - Search by Name and Surname"
+                "\n2 - Search by Last name"
+                "\n3 - Search by Age"
+                "\n4 - Search by Birth date "
+                "\n5 - Search by City"
+                "\n6 - Search by Country"
+                "\n7 - Search by Phone number"
+                "\n8 - Print all contacts"
+                "\n9 - Search by Name and Surname"
                 "\n0 - Step back\n")
 
-            if user_input in commands:
+            if request in commands:
                 user_input = input("Enter {} in correct format. "
                                    "\nFor phone: start with '8' "
                                    "\nFor BIRTH DATE: you are to use the next data representation"
                                    " <yyyy-mm-dd>\n "
-                                   .format(self.__command_line.get(user_input))).lower().capitalize().strip()
+                                   .format(self.__command_line.get(request))).capitalize().strip()
                 self.__cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" ".
-                                      format(self.__db_name, self.__command_line.get(user_input), user_input.strip()))
+                                      format(self.__db_name,
+                                             self.__command_line.get(request),
+                                             user_input.strip()))
                 break
 
-            elif user_input == '0':
+            elif request == '0':
                 self.__exit_continue("Go to the menu?\n")
                 break
 
-            elif user_input == '9':
+            elif request == '8':
                 self.__cursor.execute("SELECT * FROM {} ".format(self.__db_name))
                 break
 
-            elif user_input == '10':
+            elif request == '9':
                 user_input_surname = input(
                     "Enter {} ".format(self.__command_line.get("1"))).strip().lower().capitalize()
                 user_input_name = input("Enter {} ".format(self.__command_line.get("3"))).strip().lower().capitalize()
@@ -192,9 +193,9 @@ class YellowBook:
                                "Would you like to create a new record (1) or find another(2)."
                                "\nEnter 1 or 2 or any to exit.\r")
             if user_input == '1':
-                print("Function is design")
+                self.add_record()
             elif user_input == '2':
-                print("Function is design")
+                self.view_all_records()
             else:
                 self.menu_view()
 
