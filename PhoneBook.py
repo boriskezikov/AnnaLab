@@ -8,7 +8,7 @@ class PhoneBook:
     cursor = None
     conn = None
     __db_name = "PhoneBook"
-    command_line = {'  1': "name", '2': "surname",
+    command_line = {  '1': "name", '2': "surname",
                       '3': "Age", '4': "[Birth date]", '5': "City",
                       '6': "Country", '7': "Phone"}
 
