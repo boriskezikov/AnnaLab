@@ -16,22 +16,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PhoneBook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+            <state relative-caret-position="215">
+              <caret line="212" column="43" lean-forward="true" selection-start-line="212" selection-start-column="43" selection-end-line="212" selection-end-column="43" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#354#608#0" />
                 <element signature="e#204#361#0" />
                 <element signature="e#176#358#0" />
                 <element signature="e#420#1098#0" />
                 <element signature="e#1721#1871#0" />
-                <element signature="e#5194#8294#0" />
+                <element signature="e#2056#5123#0" />
                 <element signature="e#8339#8622#0" />
                 <element signature="e#8655#10921#0" />
                 <element signature="e#10964#12299#0" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/basetest.db">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -57,6 +61,7 @@
     <findStrings>
       <find>lower().ca</find>
       <find>command</find>
+      <find>edit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,8 +210,8 @@
       <window_info anchor="bottom" id="Event Log" sideWeight="0.5003524" side_tool="true" weight="0.2259887" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.24011299" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.46468925" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.27542374" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.20903955" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -229,6 +234,31 @@
           <url>file://$PROJECT_DIR$/PhoneBook.py</url>
           <line>117</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
+          <line>379</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
+          <line>373</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
+          <line>159</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
+          <line>187</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PhoneBook.py</url>
+          <line>193</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -278,9 +308,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mydatabase.db">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="db://0836921b-cd46-47c8-9080-862038c5864e/consoles/Connection">
       <provider selected="true" editor-type-id="0.CONSOLE">
         <state line="0" column="23" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0">
@@ -298,18 +325,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/basetest.db">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mydatabase.db">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/PhoneBook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+        <state relative-caret-position="215">
+          <caret line="212" column="43" lean-forward="true" selection-start-line="212" selection-start-column="43" selection-end-line="212" selection-end-column="43" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#354#608#0" />
             <element signature="e#204#361#0" />
             <element signature="e#176#358#0" />
             <element signature="e#420#1098#0" />
             <element signature="e#1721#1871#0" />
-            <element signature="e#5194#8294#0" />
+            <element signature="e#2056#5123#0" />
             <element signature="e#8339#8622#0" />
             <element signature="e#8655#10921#0" />
             <element signature="e#10964#12299#0" />
