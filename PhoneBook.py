@@ -8,9 +8,9 @@ class YellowBook:
     __cursor = None
     __conn = None
     __db_name = "PhoneBook"
-    __command_line = {'1': "[First name]", '2': "[Middle name]", '3': "[Last name]",
-                      '4': "Age", '5': "[Birth date]", '6': "City",
-                      '7': "Country", '8': "Phone"}
+    __command_line = {'1': "name", '2': "[surname]",
+                      '3': "Age", '4': "[Birth date]", '5': "City",
+                      '6': "Country", '7': "Phone"}
 
     def __exit_continue(self, *args):
         if input("{} y/n".format(args)).lower() == 'y':
@@ -133,6 +133,7 @@ class YellowBook:
         self.__conn.commit()  # Saves changes in data base
 
     def view_all_records(self):
+        commands = ["1", "2", "3", "4", "5", "6", "7", "8"]
         while True:
             user_input = input(
                 "\nPlease choose the needed category and enter the value."
@@ -149,14 +150,14 @@ class YellowBook:
                 "\n10 - Search by Name and Surname"
                 "\n0 - Step back\n")
 
-            if user_input in range(1, 9):
+            if user_input in commands:
                 user_input = input("Enter {} in correct format. "
                                    "\nFor phone: start with '8' "
                                    "\nFor BIRTH DATE: you are to use the next data representation"
                                    " <yyyy-mm-dd>\n "
                                    .format(self.__command_line.get(user_input))).lower().capitalize().strip()
-                self.__cursor.execute("SELECT * FROM Yellowbook WHERE {0} = \"{1}\" ".
-                                      format(self.__command_line.get(user_input), user_input.strip()))
+                self.__cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" ".
+                                      format(self.__db_name, self.__command_line.get(user_input), user_input.strip()))
                 break
 
             elif user_input == '0':
@@ -173,7 +174,7 @@ class YellowBook:
                 user_input_name = input("Enter {} ".format(self.__command_line.get("3"))).strip().lower().capitalize()
                 print(user_input_surname, user_input_name)
                 self.__cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" AND {3} = \"{4}\""
-                                      .format(self.__db_name,"[name]", user_input_surname,
+                                      .format(self.__db_name, "[name]", user_input_surname,
                                               "[surname]", user_input_name))
                 break
             else:
@@ -200,7 +201,6 @@ class YellowBook:
         for i in result:
             print(i)
             self.__exit_continue("Return to the main menu?")
-
 
     def menu_view(self):
         while True:
