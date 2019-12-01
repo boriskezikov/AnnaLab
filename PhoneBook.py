@@ -8,9 +8,9 @@ class PhoneBook:
     cursor = None
     conn = None
     __db_name = "PhoneBook"
-    command_line = {  '1': "name", '2': "surname",
-                      '3': "Age", '4': "[Birth date]", '5': "City",
-                      '6': "Country", '7': "Phone"}
+    command_line = {'1': "name", '2': "surname",
+                    '3': "Age", '4': "[Birth date]", '5': "City",
+                    '6': "Country", '7': "Phone"}
 
     def __init__(self):
         # Creating connection with stored data base
@@ -116,16 +116,16 @@ class PhoneBook:
         data.append(country.lower().capitalize())
 
         self.cursor.execute('SELECT EXISTS (SELECT name,surname'
-                              ' FROM {0} '
-                              ' WHERE name = "{1}" and surname = "{2}")'.format(self.__db_name, data[0], data[1]))
+                            ' FROM {0} '
+                            ' WHERE name = "{1}" and surname = "{2}")'.format(self.__db_name, data[0], data[1]))
 
         flag = self.cursor.fetchone()  # fetchone returns a tuple with one element
 
         if flag[0] != 1:
             try:
                 self.cursor.execute("INSERT"
-                                      " INTO {0} "
-                                      "VALUES (?,?,?,?,?,?,?)".format(self.__db_name), data)
+                                    " INTO {0} "
+                                    "VALUES (?,?,?,?,?,?,?)".format(self.__db_name), data)
                 self.conn.commit()  # Saves changes in data base
 
             except Exception as f:
@@ -158,15 +158,14 @@ class PhoneBook:
                 "\n0 - Step back\n")
 
             if request in commands:
-                user_input = input("Enter {} in correct format. "
-                                   "\nFor phone: start with '8' "
-                                   "\nFor BIRTH DATE: you are to use the next data representation"
-                                   " <yyyy-mm-dd>\n "
-                                   .format(self.command_line.get(request))).capitalize().strip()
+                print("Enter {0} ".format(self.command_line.get(request)))
+                if request == "4":
+                    print("Format <yyyy-mm-dd>")
+                user_input = input().capitalize().strip()
                 self.cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" ".
                                     format(self.__db_name,
-                                             self.command_line.get(request),
-                                             user_input.strip()))
+                                           self.command_line.get(request),
+                                           user_input.strip()))
                 break
 
             elif request == '0':
@@ -184,7 +183,7 @@ class PhoneBook:
                 print(user_input_surname, user_input_name)
                 self.cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" AND {3} = \"{4}\""
                                     .format(self.__db_name, "name", user_input_surname,
-                                              "surname", user_input_name))
+                                            "surname", user_input_name))
                 break
             else:
                 print("___________________________\nCommand is incorrect! Check if  the commands number is right.\n ")
@@ -217,9 +216,9 @@ class PhoneBook:
                 name = input("Enter name of editing record")
                 surname = input("Enter surname of editing record")
                 self.cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" AND {3} = \"{4}\"".format(self.__db_name,
-                                                                                                       "name",
+                                                                                                     "name",
                                                                                                      name,
-                                                                                                       "surname",
+                                                                                                     "surname",
                                                                                                      surname))
                 if len(self.cursor.fetchall()) == 1:
                     self.edit_record(name, surname)
@@ -253,18 +252,25 @@ class PhoneBook:
             "\n0 - Step back")
 
         if request == "1":
-            user_input = input("Enter Phone number: ")
+            while True:
+                user_input = input("Enter Phone number without 8: ")
+                if user_input.startswith("8"):
+                    continue
+                else:
+                    break
+
             print(user_input)
 
             result = self.cursor.execute("Select *"
-                                  "FROM {0} "
-                                  "WHERE {1} = \"{2}\"".
-                                format(self.__db_name, self.command_line.get("7"), user_input)).fetchall()
+                                         "FROM {0} "
+                                         "WHERE {1} = \"{2}\"".
+                                         format(self.__db_name, self.command_line.get("7"),
+                                                "8" + user_input)).fetchall()
 
             if len(result) > 0:
 
                 self.cursor.execute("DELETE FROM {0} WHERE {1} = \"{2}\" ".
-                                    format(self.__db_name, self.command_line.get(request), user_input))
+                                    format(self.__db_name, self.command_line.get("7"), "8" + user_input))
                 print("Successfully deleted")
             else:
                 print("Such record(s) does not exist.")
@@ -275,7 +281,7 @@ class PhoneBook:
 
         elif request == '2':
             self.cursor.execute("DELETE "
-                                  "FROM {} ".format(self.__db_name))
+                                "FROM {} ".format(self.__db_name))
             print("Successfully deleted")
             self.__exit_continue("Go to the menu?")
 
@@ -285,10 +291,10 @@ class PhoneBook:
             user_input_name = input("Enter {} ".format(self.command_line.get("2"))).strip().capitalize()
             print(user_input_surname, user_input_name)
             self.cursor.execute("DELETE "
-                                  "FROM {0}"
-                                  " WHERE {1} = \"{2}\" AND {3} = \"{4}\""
+                                "FROM {0}"
+                                " WHERE {1} = \"{2}\" AND {3} = \"{4}\""
                                 .format(self.__db_name, self.command_line.get("1"), user_input_surname,
-                                          self.command_line.get("2"), user_input_name))
+                                        self.command_line.get("2"), user_input_name))
         else:
             print("___________________________\nCommand is incorrect! Check if  the commands number is right. ")
 
@@ -359,9 +365,9 @@ class PhoneBook:
                         user_value = input("Enter new {} ".format(self.command_line.get(request)))
 
                 self.cursor.execute("UPDATE {0} "
-                                      "SET {1} = \"{2}\" "
-                                      "WHERE name = \"{3}\" "
-                                      "AND surname = \"{4}\"".
+                                    "SET {1} = \"{2}\" "
+                                    "WHERE name = \"{3}\" "
+                                    "AND surname = \"{4}\"".
                                     format(self.__db_name, self.command_line.get(request), value, fname, sname))
                 self.conn.commit()
 
@@ -375,11 +381,11 @@ class PhoneBook:
                         "\nyour input consists of digits only and the age is correct! "
                         "\n( 12 - correct, '-1' - incorrect, 151 - incorrect) ")
                 self.cursor.execute("UPDATE {0}"
-                                      " SET {1} = \"{2}\" "
-                                      "WHERE name = \"{3}\""
-                                      "AND surname = \"{4}\"".
+                                    " SET {1} = \"{2}\" "
+                                    "WHERE name = \"{3}\""
+                                    "AND surname = \"{4}\"".
                                     format(self.__db_name, self.command_line.get(request), user_value, fname,
-                                             sname))
+                                           sname))
                 self.conn.commit()
 
 
@@ -391,11 +397,11 @@ class PhoneBook:
                                                   int(input("Birth date Day:")))
                         datetime.datetime.strptime(str(date_text), '%Y-%m-%d')
                         self.cursor.execute("UPDATE {0} "
-                                              "SET {1} = \"{2}\""
-                                              " WHERE [name] = \"{3}\" "
-                                              "AND [surname] = \"{4}\"".
+                                            "SET {1} = \"{2}\""
+                                            " WHERE [name] = \"{3}\" "
+                                            "AND [surname] = \"{4}\"".
                                             format(self.__db_name, self.command_line.get(request), user_value,
-                                                     fname, sname))
+                                                   fname, sname))
                         print("Successfully")
                         self.conn.commit()
 
@@ -409,19 +415,19 @@ class PhoneBook:
                 while (len(phone) != 10) or (phone.isdigit() is not True) or (phone[0] == 8):
                     phone = input("Try again! Input phone number  without '8' : ")
                 self.cursor.execute("UPDATE {0} "
-                                      "SET {1} = \"{2}\" "
-                                      "WHERE name = \"{3}\""
-                                      "AND surname = \"{4}\"".
+                                    "SET {1} = \"{2}\" "
+                                    "WHERE name = \"{3}\""
+                                    "AND surname = \"{4}\"".
                                     format(self.__db_name, self.command_line.get(request), user_value, fname,
-                                             sname))
+                                           sname))
                 self.conn.commit()
 
 
             elif request == '8':
                 self.cursor.execute("DELETE "
-                                      "FROM {0} "
-                                      "WHERE name = \"{1}\""
-                                      "AND surname = \"{2}\"".
+                                    "FROM {0} "
+                                    "WHERE name = \"{1}\""
+                                    "AND surname = \"{2}\"".
                                     format(self.__db_name, user_value, fname, sname))
                 self.conn.commit()
 
@@ -429,12 +435,7 @@ class PhoneBook:
             elif request == '0':
                 self.__exit_continue("Go to Main menu?")
 
-
-
             self.__exit_continue("Return to menu?")
-
-
-
 
 
 yb = PhoneBook()
