@@ -5,10 +5,12 @@ import datetime
 
 
 class YellowBook:
-    __database = None
     __cursor = None
     __conn = None
     __db_name = "PhoneBook"
+    __command_line = {'1': "[First name]", '2': "[Middle name]", '3': "[Last name]",
+                      '4': "Age", '5': "[Birth date]", '6': "City",
+                      '7': "Country", '8': "Phone"}
 
     def __exit_continue(self, *args):
         if input("{} y/n".format(args)).lower() == 'y':
@@ -42,8 +44,7 @@ class YellowBook:
             print("Your input was incorrect! This field should consist of letters and digits:\n")
             self.__validate_name_surname(input(), data)
 
-    def __init__(self, db_file):
-        self.__database = db_file
+    def __init__(self):
         # Creating connection with stored data base
         self.__conn = sqlite3.connect("mydatabase.db")
         # Cursor is a special object stores the result of SELECT command.
@@ -51,9 +52,9 @@ class YellowBook:
         self.__initate_db()
 
     def __initate_db(self):
-
-        self.__cursor.execute("""CREATE TABLE IF NOT EXISTS PhoneBook 
-        (name text, surname text, phone text, birth_date text, age text, city text, country text)""")
+        self.__cursor.execute("""CREATE TABLE IF NOT EXISTS {0}
+        (name text, surname text, phone text, birth_date text, age text, city text, country text)"""
+                              .format(self.__db_name))
 
     def add_record(self):
         print("Now lets add new person")
@@ -131,6 +132,76 @@ class YellowBook:
 
         self.__conn.commit()  # Saves changes in data base
 
+    def view_all_records(self):
+        while True:
+            user_input = input(
+                "\nPlease choose the needed category and enter the value."
+                "\n________________________________ "
+                "\n1 - Search by First name"
+                "\n2 - Search by Middle name "
+                "\n3 - Search by Last name"
+                "\n4 - Search by Age"
+                "\n5 - Search by Birth date "
+                "\n6 - Search by City"
+                "\n7 - Search by Country"
+                "\n8 - Search by Phone number"
+                "\n9 - Print all contacts"
+                "\n10 - Search by Name and Surname"
+                "\n0 - Step back\n")
+
+            if user_input in range(1, 9):
+                user_input = input("Enter {} in correct format. "
+                                   "\nFor phone: start with '8' "
+                                   "\nFor BIRTH DATE: you are to use the next data representation"
+                                   " <yyyy-mm-dd>\n "
+                                   .format(self.__command_line.get(user_input))).lower().capitalize().strip()
+                self.__cursor.execute("SELECT * FROM Yellowbook WHERE {0} = \"{1}\" ".
+                                      format(self.__command_line.get(user_input), user_input.strip()))
+                break
+
+            elif user_input == '0':
+                self.__exit_continue("Go to the menu?\n")
+                break
+
+            elif user_input == '9':
+                self.__cursor.execute("SELECT * FROM {} ".format(self.__db_name))
+                break
+
+            elif user_input == '10':
+                user_input_surname = input(
+                    "Enter {} ".format(self.__command_line.get("1"))).strip().lower().capitalize()
+                user_input_name = input("Enter {} ".format(self.__command_line.get("3"))).strip().lower().capitalize()
+                print(user_input_surname, user_input_name)
+                self.__cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" AND {3} = \"{4}\""
+                                      .format(self.__db_name,"[name]", user_input_surname,
+                                              "[surname]", user_input_name))
+                break
+            else:
+                print("___________________________\nCommand is incorrect! Check if  the commands number is right.\n ")
+
+        # Receives the result of the SQL request
+        result = self.__cursor.fetchall()
+
+        """
+         >> VERIFIES IF RESULT EXISTS IN CURRENT TABLE.
+        """
+
+        if len(result) == 0:
+            user_input = input("This record does not exist yet.\n "
+                               "Would you like to create a new record (1) or find another(2)."
+                               "\nEnter 1 or 2 or any to exit.\r")
+            if user_input == '1':
+                print("Function is design")
+            elif user_input == '2':
+                print("Function is design")
+            else:
+                self.menu_view()
+
+        for i in result:
+            print(i)
+            self.__exit_continue("Return to the main menu?")
+
+
     def menu_view(self):
         while True:
             user_input = input("======================================================\n"
@@ -156,12 +227,13 @@ class YellowBook:
         elif user_input == "4":
             pass
         elif user_input == "5":
-            pass
+            self.view_all_records()
+
         elif user_input == "6":
             print("Exit process initiated")
             print("By by")
             sys.exit(0)
 
 
-yb = YellowBook("data_base.txt")
+yb = YellowBook()
 yb.menu_view()
