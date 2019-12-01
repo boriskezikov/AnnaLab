@@ -4,13 +4,20 @@ import string
 import datetime
 
 
-class YellowBook:
+class PhoneBook:
     __cursor = None
     __conn = None
     __db_name = "PhoneBook"
     __command_line = {'1': "name", '2': "surname",
                       '3': "Age", '4': "[Birth date]", '5': "City",
                       '6': "Country", '7': "Phone"}
+
+    def __init__(self):
+        # Creating connection with stored data base
+        self.__conn = sqlite3.connect("mydatabase.db")
+        # Cursor is a special object stores the result of SELECT command.
+        self.__cursor = self.__conn.cursor()
+        self.__initate_db()
 
     def __exit_continue(self, *args):
         if input("{} y/n".format(args)).lower() == 'y':
@@ -43,13 +50,6 @@ class YellowBook:
         else:
             print("Your input was incorrect! This field should consist of letters and digits:\n")
             self.__validate_name_surname(input(), data)
-
-    def __init__(self):
-        # Creating connection with stored data base
-        self.__conn = sqlite3.connect("mydatabase.db")
-        # Cursor is a special object stores the result of SELECT command.
-        self.__cursor = self.__conn.cursor()
-        self.__initate_db()
 
     def __initate_db(self):
         self.__cursor.execute("""CREATE TABLE IF NOT EXISTS {0}
@@ -119,6 +119,7 @@ class YellowBook:
                 self.__cursor.execute("INSERT"
                                       " INTO {0} "
                                       "VALUES (?,?,?,?,?,?,?)".format(self.__db_name), data)
+                self.__conn.commit()  # Saves changes in data base
 
             except Exception as f:
                 print("Sorry currently service is unavailable")
@@ -130,7 +131,7 @@ class YellowBook:
                 " \nFill in another Surname.\n ")
             self.__exit_continue("Menu?")
 
-        self.__conn.commit()  # Saves changes in data base
+        self.__exit_continue("Menu?")
 
     def view_all_records(self):
         commands = ["1", "2", "3", "4", "5", "6", "7"]
@@ -175,8 +176,8 @@ class YellowBook:
                 user_input_name = input("Enter {} ".format(self.__command_line.get("3"))).strip().lower().capitalize()
                 print(user_input_surname, user_input_name)
                 self.__cursor.execute("SELECT * FROM {0} WHERE {1} = \"{2}\" AND {3} = \"{4}\""
-                                      .format(self.__db_name, "[name]", user_input_surname,
-                                              "[surname]", user_input_name))
+                                      .format(self.__db_name, "name", user_input_surname,
+                                              "surname", user_input_name))
                 break
             else:
                 print("___________________________\nCommand is incorrect! Check if  the commands number is right.\n ")
@@ -201,7 +202,7 @@ class YellowBook:
 
         for i in result:
             print(i)
-            self.__exit_continue("Return to the main menu?")
+        self.__exit_continue("Return to the main menu?")
 
     def menu_view(self):
         while True:
@@ -235,6 +236,57 @@ class YellowBook:
             print("By by")
             sys.exit(0)
 
+    def delete_record(self):
+        commands = ["1", "2", "3"]
+        request = input(
+            "\nPlease choose the needed category and enter the value."
+            "\n________________________________ "
+            "\n1 - Delete by Phone number"
+            "\n2 - Delete all contacts"
+            "\n3 - Delete by First name and Last name"
+            "\n0 - Step back")
 
-yb = YellowBook()
+        if request in commands:
+            user_input = input("Enter {} ".format(self.__command_line.get(request))).strip().capitalize()
+            print(user_input)
+
+            self.__cursor.execute("Select *"
+                                  " FROM Yellowbook "
+                                  "WHERE {0} = \"{1}\"".
+                                  format(self.__command_line.get(request), user_input))
+            if len(self.__cursor.fetchall()) > 0:
+
+                self.__cursor.execute("DELETE FROM Yellowbook WHERE {0} = \"{1}\" ".
+                                      format(self.__command_line.get(request), user_input))
+                print("Successfully deleted")
+            else:
+                print("Such record(s) does not exist.")
+                self.delete_record()
+
+        elif request == '0':
+            self.__exit_continue("Go to the menu?")
+
+        elif request == '9':
+            self.__cursor.execute("DELETE "
+                                  "FROM Yellowbook ")
+            print("Successfully deleted")
+
+        elif request == '10':
+            user_input_surname = input("Enter {} ".format(self.__command_line.get("1"))).strip().capitalize()
+            user_input_name = input("Enter {} ".format(self.__command_line.get("3"))).strip().capitalize()
+            print(user_input_surname, user_input_name)
+            self.__cursor.execute("DELETE "
+                                  "FROM Yellowbook"
+                                  " WHERE {0} = \"{1}\" AND {2} = \"{3}\""
+                                  .format(self.__command_line.get("1"), user_input_surname,
+                                          self.__command_line.get("3"), user_input_name))
+        else:
+            print("___________________________\nCommand is incorrect! Check if  the commands number is right. ")
+
+        self.__conn.commit()
+
+        self.menu_view()
+
+
+yb = PhoneBook()
 yb.menu_view()
