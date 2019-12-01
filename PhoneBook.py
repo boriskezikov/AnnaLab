@@ -8,6 +8,14 @@ class YellowBook:
     __database = None
     __cursor = None
     __conn = None
+    __db_name = "PhoneBook"
+
+    def __exit_continue(self, *args):
+        if input("{} y/n".format(args)).lower() == 'y':
+            self.menu_view()
+        else:
+            print("Thanks for choosing us!")
+            sys.exit(0)
 
     def __validate_menu_input(self, user_input):
         if str(user_input).isnumeric():
@@ -27,7 +35,7 @@ class YellowBook:
         user_input_list = [x for x in space if x not in string.punctuation]
 
         if len(user_input_list) == len(space) and (len(space) != 0):
-            space = space.lower().capitalize()
+            space = space.capitalize()
             data.append(space.strip())
             return
         else:
@@ -36,11 +44,15 @@ class YellowBook:
 
     def __init__(self, db_file):
         self.__database = db_file
+        # Creating connection with stored data base
         self.__conn = sqlite3.connect("mydatabase.db")
+        # Cursor is a special object stores the result of SELECT command.
         self.__cursor = self.__conn.cursor()
+        self.__initate_db()
 
-    def initate_db(self):
-        self.cursor.execute("""CREATE TABLE PhoneBook 
+    def __initate_db(self):
+
+        self.__cursor.execute("""CREATE TABLE IF NOT EXISTS PhoneBook 
         (name text, surname text, phone text, birth_date text, age text, city text, country text)""")
 
     def add_record(self):
@@ -95,30 +107,29 @@ class YellowBook:
             country = input("Country name can't include another symbols besides letters and digits! : ")
         data.append(country.lower().capitalize())
 
-        self.__cursor.execute('SELECT EXISTS (SELECT [First name],[Last name]'
+        self.__cursor.execute('SELECT EXISTS (SELECT [name],[surname]'
                               ' FROM {0} '
-                              ' WHERE [First name] = "{1}" and [Last name] = "{2}")'.format(DATA, data[0], data[2]))
+                              ' WHERE [name] = "{1}" and [surname] = "{2}")'.format(self.__db_name, data[0], data[2]))
 
         flag = self.__cursor.fetchone()  # fetchone returns a tuple with one element
 
         if flag[0] != 1:
-
-            # UNIQUE ERROR HANDLING
             try:
                 self.__cursor.execute("INSERT"
-                                    " INTO Yellowbook "
-                                    "VALUES (?,?,?,?,?,?,?,?)", data)
+                                      " INTO {0} "
+                                      "VALUES (?,?,?,?,?,?,?)".format(self.__db_name), data)
 
-            except sqlite3.IntegrityError as f:
-                foo.exit_continue("Return to menu?\n")
+            except Exception as f:
+                print("Sorry currently service is unavailable")
+                print(f)
 
         else:
             print(
                 " \nThe Yellowbook does not support 2 or more records with similar [First name] and {Second name] fields."
                 " \nFill in another Surname.\n ")
-            foo.exit_continue("Menu?")
+            self.__exit_continue("Menu?")
 
-        main.conn.commit()  # Saves changes in data base
+        self.__conn.commit()  # Saves changes in data base
 
     def menu_view(self):
         while True:
